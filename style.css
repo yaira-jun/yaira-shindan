@@ -184,6 +184,13 @@ body {
   line-height: 1.6;
 }
 
+.ad-slot {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
 /* 診断画面 */
 .progress-wrap {
   max-width: 480px;
