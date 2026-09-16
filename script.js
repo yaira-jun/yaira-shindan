@@ -111,16 +111,16 @@
 
   // ---- 隠し結果(答え方のパターンで判定。全部で10種類) ----
   var HIDDEN_RESULTS = {
-    allA: { id: 'allA', title: '下ネタの申し子', desc: '10問全部で全力の反応。もはや下ネタ界のレジェンドと言っても過言ではありません。' },
-    allB: { id: 'allB', title: '永遠の中間管理職', desc: '全問「ちょっと笑う」を選んだあなたは、どんな時も程よい距離感をキープする調整型。' },
-    allC: { id: 'allC', title: '苦笑いマスター', desc: '全問「苦笑い」。気まずさを一身に受け止める表情筋には拍手を送りたいところです。' },
-    allD: { id: 'allD', title: '聖人モード', desc: '全問「冷静」を選んだあなたは、もはや悟りの境地。下ネタなど風のように通り過ぎていきます。' },
-    frontAbackD: { id: 'frontAbackD', title: 'だんだん冷める人', desc: '序盤はノリノリだったのに、後半急に冷静になるタイプ。テンションの落差が最大の武器。' },
-    frontDbackA: { id: 'frontDbackA', title: 'だんだん乗ってくる人', desc: '最初は淡々としているのに、後半どんどんノッてくるタイプ。助走が長い分、加速力がすごい。' },
-    altAD: { id: 'altAD', title: 'ツンデレタイプ', desc: 'ノる→冷静→ノる→冷静…を繰り返す、まさかのツンデレパターン。周りを振り回しているのは無自覚かも。' },
-    altDA: { id: 'altDA', title: '小悪魔タイプ', desc: '冷静→ノる→冷静→ノる…を繰り返す、緩急自在の小悪魔タイプ。掴みどころのなさが逆に魅力です。' },
-    extreme: { id: 'extreme', title: '両極端な人', desc: '反応がAかDにきっぱり分かれるあなたは、中間がない両極端タイプ。白黒はっきりさせたい性格かも。' },
-    unpredictable: { id: 'unpredictable', title: '予測不能な人', desc: '4つの選択肢を満遍なく使う、読めないタイプ。次にどう反応するか、友達も予想できないはずです。' }
+    allA: { id: 'allA', title: '下ネタの申し子', desc: '10問全部で全力の反応。もはや下ネタ界のレジェンドと言っても過言ではありません。', isHidden: true },
+    allB: { id: 'allB', title: '永遠の中間管理職', desc: '全問「ちょっと笑う」を選んだあなたは、どんな時も程よい距離感をキープする調整型。', isHidden: true },
+    allC: { id: 'allC', title: '苦笑いマスター', desc: '全問「苦笑い」。気まずさを一身に受け止める表情筋には拍手を送りたいところです。', isHidden: true },
+    allD: { id: 'allD', title: '聖人モード', desc: '全問「冷静」を選んだあなたは、もはや悟りの境地。下ネタなど風のように通り過ぎていきます。', isHidden: true },
+    frontAbackD: { id: 'frontAbackD', title: 'だんだん冷める人', desc: '序盤はノリノリだったのに、後半急に冷静になるタイプ。テンションの落差が最大の武器。', isHidden: true },
+    frontDbackA: { id: 'frontDbackA', title: 'だんだん乗ってくる人', desc: '最初は淡々としているのに、後半どんどんノッてくるタイプ。助走が長い分、加速力がすごい。', isHidden: true },
+    altAD: { id: 'altAD', title: 'ツンデレタイプ', desc: 'ノる→冷静→ノる→冷静…を繰り返す、まさかのツンデレパターン。周りを振り回しているのは無自覚かも。', isHidden: true },
+    altDA: { id: 'altDA', title: '小悪魔タイプ', desc: '冷静→ノる→冷静→ノる…を繰り返す、緩急自在の小悪魔タイプ。掴みどころのなさが逆に魅力です。', isHidden: true },
+    extreme: { id: 'extreme', title: '両極端な人', desc: '反応がAかDにきっぱり分かれるあなたは、中間がない両極端タイプ。白黒はっきりさせたい性格かも。', isHidden: true },
+    unpredictable: { id: 'unpredictable', title: '予測不能な人', desc: '4つの選択肢を満遍なく使う、読めないタイプ。次にどう反応するか、友達も予想できないはずです。', isHidden: true }
   };
 
   // ---- 状態(今何問目か、これまでの答えを記録しておく箱) ----
@@ -151,6 +151,7 @@
   var optionsContainer = document.getElementById('options-container');
 
   var resultLead = document.getElementById('result-lead');
+  var rareBadge = document.getElementById('rare-badge');
   var resultTitle = document.getElementById('result-title');
   var resultDesc = document.getElementById('result-desc');
   var gaugePercent = document.getElementById('gauge-percent');
@@ -317,7 +318,8 @@
       name: state.userName,
       title: result.title,
       desc: result.desc,
-      percent: percent
+      percent: percent,
+      isHidden: !!result.isHidden
     }, 'own');
   }
 
@@ -328,6 +330,7 @@
     resultTitle.textContent = data.title;
     resultDesc.textContent = data.desc;
     gaugePercent.textContent = data.percent + '%';
+    rareBadge.classList.toggle('hidden', !data.isHidden);
 
     showScreen(resultScreen);
 
@@ -375,7 +378,8 @@
       name: name,
       title: result.title,
       desc: result.desc,
-      percent: percent
+      percent: percent,
+      isHidden: !!result.isHidden
     };
   }
 
@@ -442,19 +446,40 @@
     ctx.font = '700 28px ' + fontFamily;
     ctx.fillText(data.name + 'さんの診断結果は……', size / 2, cardY + 80);
 
+    // 激レア(隠し結果)バッジ
+    if (data.isHidden) {
+      var badgeText = '★ 激レア隠し結果 ★';
+      ctx.font = '900 26px ' + fontFamily;
+      var badgeTextWidth = ctx.measureText(badgeText).width;
+      var badgePadX = 24, badgeH = 48;
+      var badgeW = badgeTextWidth + badgePadX * 2;
+      var badgeX = size / 2 - badgeW / 2;
+      var badgeY = cardY + 105;
+      var badgeGradient = ctx.createLinearGradient(badgeX, 0, badgeX + badgeW, 0);
+      badgeGradient.addColorStop(0, '#ffd23f');
+      badgeGradient.addColorStop(1, '#ffb347');
+      ctx.fillStyle = badgeGradient;
+      drawRoundedRect(ctx, badgeX, badgeY, badgeW, badgeH, badgeH / 2);
+      ctx.fill();
+      ctx.fillStyle = '#5a3b00';
+      ctx.fillText(badgeText, size / 2, badgeY + badgeH / 2 + 2);
+    }
+
+    var blockOffset = data.isHidden ? 55 : 0;
+
     // 結果タイトル
     ctx.fillStyle = '#e6398a';
     ctx.font = '900 58px ' + fontFamily;
-    ctx.fillText(data.title, size / 2, cardY + 170);
+    ctx.fillText(data.title, size / 2, cardY + 170 + blockOffset);
 
     // 説明文(中央寄せで折り返し)
     ctx.fillStyle = '#2b1a3d';
     ctx.font = '400 32px ' + fontFamily;
     ctx.textAlign = 'left';
-    wrapCanvasText(ctx, data.desc, cardX + 60, cardY + 250, cardW - 120, 46);
+    wrapCanvasText(ctx, data.desc, cardX + 60, cardY + 250 + blockOffset, cardW - 120, 46);
 
     // ゲージ
-    var gaugeX = cardX + 60, gaugeY = cardY + 560, gaugeW = cardW - 120, gaugeH = 40;
+    var gaugeX = cardX + 60, gaugeY = cardY + 560 + blockOffset, gaugeW = cardW - 120, gaugeH = 40;
     ctx.textAlign = 'left';
     ctx.fillStyle = '#7a6d8c';
     ctx.font = '700 28px ' + fontFamily;
