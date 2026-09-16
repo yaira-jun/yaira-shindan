@@ -149,6 +149,7 @@
   var quizCard = document.getElementById('quiz-card');
   var questionText = document.getElementById('question-text');
   var optionsContainer = document.getElementById('options-container');
+  var backBtn = document.getElementById('back-btn');
 
   var resultLead = document.getElementById('result-lead');
   var rareBadge = document.getElementById('rare-badge');
@@ -200,6 +201,7 @@
 
     questionText.textContent = q.text;
     optionsContainer.innerHTML = '';
+    backBtn.classList.toggle('hidden', state.currentIndex === 0);
 
     var letters = ['A', 'B', 'C', 'D'];
     q.options.forEach(function (opt, i) {
@@ -245,6 +247,17 @@
         finishQuiz();
       }
     }, 280);
+  }
+
+  function goToPreviousQuestion() {
+    if (state.currentIndex === 0) return;
+
+    var previousIndex = state.currentIndex - 1;
+    var previousAnswer = state.answers.pop();
+    state.totalScore -= QUESTIONS[previousIndex].options[previousAnswer].score;
+    state.currentIndex = previousIndex;
+
+    renderQuestion();
   }
 
   // ============ 隠し結果の判定 ============
@@ -588,6 +601,7 @@
 
   // ---- イベント登録 ----
   startBtn.addEventListener('click', startQuiz);
+  backBtn.addEventListener('click', goToPreviousQuestion);
   saveImageBtn.addEventListener('click', handleSaveImage);
   snsLineBtn.addEventListener('click', handleShareLine);
   snsXBtn.addEventListener('click', handleShareX);
