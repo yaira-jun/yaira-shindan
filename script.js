@@ -202,6 +202,7 @@
     questionText.textContent = q.text;
     optionsContainer.innerHTML = '';
     backBtn.classList.toggle('hidden', state.currentIndex === 0);
+    backBtn.disabled = false;
 
     var letters = ['A', 'B', 'C', 'D'];
     q.options.forEach(function (opt, i) {
@@ -234,6 +235,7 @@
   function handleAnswer(btnEl, optionIndex, score) {
     var allBtns = optionsContainer.querySelectorAll('.option-btn');
     allBtns.forEach(function (b) { b.disabled = true; });
+    backBtn.disabled = true; // 次の質問に切り替わるまでは「戻る」を押せないようにする
 
     btnEl.classList.add('selected');
     state.totalScore += score;
