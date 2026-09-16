@@ -4,93 +4,93 @@
   // ---- 質問データ(選択肢の並び順 = A,B,C,D。scoreは合計点用) ----
   var QUESTIONS = [
     {
-      text: '友達が下ネタを言ったとき、あなたは？',
+      text: '合コンで隣の友達が渾身の下ネタをぶっ込んできた。あなたの反応は？',
       options: [
-        { label: '普通に爆笑する', score: 4 },
-        { label: 'ちょっと笑う', score: 3 },
-        { label: '苦笑いする', score: 2 },
-        { label: '冷静にツッコむ', score: 1 }
+        { label: '腹抱えて爆笑、二次会でもネタにする', score: 4 },
+        { label: 'ちょっと笑ってしまう', score: 3 },
+        { label: '微妙な空気の中、愛想笑い', score: 2 },
+        { label: '真顔で「はい、次」とスルー', score: 1 }
       ]
     },
     {
-      text: '意味深な言葉を聞いたとき……',
+      text: '「それ、入れていいですか？」と言われた。あなたの脳内は？',
       options: [
-        { label: 'すぐ別の意味を想像する', score: 4 },
-        { label: '少し考えてから気づく', score: 3 },
-        { label: '普通の意味だと思う', score: 2 },
-        { label: '意味深だと気づかない', score: 1 }
+        { label: '一瞬で別の意味に変換完了', score: 4 },
+        { label: '数秒後に「あ、そういうこと」と気づく', score: 3 },
+        { label: '素直に「何を？」と聞き返す', score: 2 },
+        { label: '普通に仕事の話だと思う', score: 1 }
       ]
     },
     {
-      text: '友達から「これ絶対意味深やん」と言われたら？',
+      text: '友達に「今の絶対わざとだよね？」と言われた。あなたは？',
       options: [
-        { label: '自分もすぐ気づいていた', score: 4 },
-        { label: '言われて気づく', score: 3 },
-        { label: 'よく分からない', score: 2 },
-        { label: '普通の意味だと思う', score: 1 }
+        { label: '「気づくの遅すぎ」と逆にドヤる', score: 4 },
+        { label: '「言われてみれば…！」と今更爆笑', score: 3 },
+        { label: '「え、どこが？」と本気で分からない', score: 2 },
+        { label: '「普通の話だと思うけど」と真顔', score: 1 }
       ]
     },
     {
-      text: '下ネタの話題が出たとき、あなたは？',
+      text: '飲み会でついに下ネタトークが解禁された。あなたのポジションは？',
       options: [
-        { label: '積極的に参加する', score: 4 },
-        { label: '聞いている', score: 3 },
-        { label: '話題を変えたい', score: 2 },
-        { label: 'なぜか冷静になる', score: 1 }
+        { label: '進行役、もはや主役', score: 4 },
+        { label: 'ちゃんと会話に混ざる参加者', score: 3 },
+        { label: 'グラスの氷を見つめる係', score: 2 },
+        { label: 'なぜか一番真面目な相談に乗り出す', score: 1 }
       ]
     },
     {
-      text: '「大きい」「硬い」「長い」などの言葉を聞いたとき……',
+      text: '「これ、めっちゃ硬くて大きいよ」と言われた。まず思い浮かべるものは？',
       options: [
-        { label: '別の意味を考える', score: 4 },
-        { label: 'ちょっとだけ考える', score: 3 },
-        { label: '何も思わない', score: 2 },
-        { label: '言葉通りに受け取る', score: 1 }
+        { label: 'それしか思い浮かばない', score: 4 },
+        { label: '一瞬ソレがよぎる', score: 3 },
+        { label: '特に何も思わない', score: 2 },
+        { label: '素材か何かの話だと思う', score: 1 }
       ]
     },
     {
-      text: '友達が下ネタを言ってスベったら？',
+      text: '友達の下ネタが盛大にスベった。あなたの動きは？',
       options: [
-        { label: 'さらに乗っかる', score: 4 },
-        { label: '笑ってあげる', score: 3 },
-        { label: '静かに見守る', score: 2 },
-        { label: '冷静にツッコむ', score: 1 }
+        { label: '追い打ちでさらに強いパンチラインを打つ', score: 4 },
+        { label: '助け舟で笑ってあげる', score: 3 },
+        { label: '気まずさに耐えて黙々と食事を続ける', score: 2 },
+        { label: '「今のは寒かったね」と正直にツッコむ', score: 1 }
       ]
     },
     {
-      text: '下ネタ系の動画が流れてきたら？',
+      text: 'SNSのタイムラインに下ネタ系の動画が流れてきた。あなたは？',
       options: [
-        { label: '普通に見る', score: 4 },
-        { label: 'ちょっと気になる', score: 3 },
-        { label: 'スルーする', score: 2 },
-        { label: '友達に送りたくなる', score: 1 }
+        { label: '音量上げてガッツリ見る', score: 4 },
+        { label: '気になってつい二度見する', score: 3 },
+        { label: '秒でスクロールしてスルー', score: 2 },
+        { label: '保存して友達グループに即シェア', score: 1 }
       ]
     },
     {
-      text: '「この言葉、別の意味にも聞こえるな」と思うことは？',
+      text: '日常会話の中で「それ、別の意味に聞こえるんだけど」と思うことは？',
       options: [
-        { label: 'かなり多い', score: 4 },
-        { label: 'たまにある', score: 3 },
-        { label: 'あまりない', score: 2 },
-        { label: 'ほとんどない', score: 1 }
+        { label: 'しょっちゅう、もはや才能', score: 4 },
+        { label: 'たまに気づいてニヤける', score: 3 },
+        { label: '言われないと気づかない', score: 2 },
+        { label: 'ほぼゼロ、真面目に聞いている', score: 1 }
       ]
     },
     {
-      text: '友達との会話で下ネタになったら？',
+      text: 'グループLINEで下ネタスタンプが飛び交い始めた。あなたは？',
       options: [
-        { label: '会話の中心になる', score: 4 },
-        { label: '普通に参加する', score: 3 },
-        { label: '聞き役になる', score: 2 },
-        { label: 'ツッコミ役になる', score: 1 }
+        { label: '一番おかしいスタンプで会話を加速させる', score: 4 },
+        { label: '普通にスタンプを返して参加する', score: 3 },
+        { label: '既読だけつけてそっと見守る', score: 2 },
+        { label: '「それ誰かに見られたら大変だよ」とツッコむ係', score: 1 }
       ]
     },
     {
-      text: '自分の下ネタ耐性について一番近いのは？',
+      text: '自分の下ネタ耐性を自己採点するなら？',
       options: [
-        { label: 'かなり強い', score: 4 },
-        { label: '普通', score: 3 },
-        { label: '弱め', score: 2 },
-        { label: 'そもそも興味がない', score: 1 }
+        { label: '免疫MAX、もはや余裕', score: 4 },
+        { label: '平均的、普通に楽しめる', score: 3 },
+        { label: 'ちょっと弱め、慣れてない', score: 2 },
+        { label: 'そもそも興味の範囲外', score: 1 }
       ]
     }
   ];
